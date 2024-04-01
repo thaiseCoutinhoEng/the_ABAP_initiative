@@ -1,0 +1,76 @@
+*&---------------------------------------------------------------------*
+*& Report ZRAULA07_EX01
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZRAULA07_EX01.
+
+*Elemento de dados: Objeto que descrever o tippo de dados e significado semantico de um campo da tabela.
+*Domínio: Define intervalos de valores válidos para os campos. Campos semelhantes podem ser agrupados em um domínio. Mudar esse domínio muda todos os campos.
+
+*i - integer 4 bytes número inteiro + / - 2,1 bilhões.
+*f - floar 8 bytes, 15-16 dígitos significativos.
+*c - string de até65 mil caracteres
+*n - numeric string até 65 mil  caracteres.
+*string - de comprimento dinâmico até 2 GB de comprimento!
+*xstring - hex string sequencial de byte comprimento de dinâmico.
+*x - byte sequencial de até 65k bytes
+*d - Data 8 caracteres de formato AAAAMMDD
+*t - tempo 6 caracteres de HHMMSS
+*p - packed number preciso ou número flutuante de até 16 bytes
+
+*DATA - Declarar suas próprias variáveis ou atributos de instancia de classes.
+*Sintaxe: DATA var [{TYPE type}|{LIKE dobj}]...
+*Exemplo: DATA lv_cep TYPE c LENGTH 10.
+
+*DATA: Declara Variáveis e também Tabelas Internas (Cria de forma individual).
+*TYPE: DEFINE a variável, de que tipo ela será. Quando criado, nenhuma memória é alocada.
+*Geralemente utilizado para refernciar um DATA TYPE existente (Elementar por exemplo).
+*TYPES: Cria Estruturas e a memória é alocada assim que é definida(Cria de forma coletiva).
+*LIKE: É usado para se referir a variáveis locais, tabelas.
+*Geralmente utilizado para declarar dados com referência a DATA OBJECTS existentes dentro do
+*seu código (local) ou fora dele (global).
+
+*Estrutura: São objetos de dados estruturados de um tipo de estruturas simples, podendo ser uma linha da tabela interna.
+*Tabela Interna: As tabelas internas fornecem um meio selecionar dados a partir de uma estrutura fixa e armazená-la na memória de trabalho em ABAP. Os dados são armazenados linha por linha
+*na memória, e cada linha possui a mesma estrutura. Em ABAP tabelas internas cumprem a funcao de matrizes.
+
+DATA: lv_fname(20),
+      lv_mname(20),
+      lv_lname(20),
+      lv_add1(20),
+      lv_add2(20).
+
+TYPES: ty_str(15).
+
+DATA: lv_fname00 type ty_str,
+      lv_mname00 type ty_str,
+      lv_lname00 type ty_str,
+      lv_add100 type ty_str,
+      lv_add200 like lv_add100.
+
+TYPES: lv_matnr01 like mara-matnr,
+       lv_matnr02 type mara-matnr.
+
+DATA: lv_ty_matnr01 type lv_matnr01,
+      lv_like_matnr02 like lv_ty_matnr01.
+
+*Estrutura x tabela interna.
+DATA: es_sflight type sflight,
+      ti_sflight type  table of sflight.
+
+TYPES: BEGIN OF ty_sflight.
+       INCLUDE TYPE sflight.
+TYPES: colunanova TYPE i,
+       END OF ty_sflight.
+
+DATA: es_sflight_custom TYPE sflight,
+      ti_sflight_custom TYPE TABLE OF sflight.
+
+TYPES: BEGIN OF ty_custom,
+       num1 TYPE i,
+       nome TYPE string,
+       end OF ty_custom.
+
+DATA: es_custom TYPE ty_custom,
+      ti_custom TYPE TABLE OF ty_cutom.

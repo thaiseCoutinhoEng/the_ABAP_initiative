@@ -1,0 +1,28 @@
+*&---------------------------------------------------------------------*
+*& Report ZRAULA08_EX01
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZRAULA08_EX01.
+
+*Elemento de dados
+*Objeto que descreve o tipo de dados e significado semântico de um campo da tabela.
+*
+*Dominio
+*Define intervalos de valores válidos para os campos. Campos semelhantes podem ser agrupados em um domínio.
+*Mudar esse domínio muda todos os campos.
+
+*Tabelas são objetos de banco de dados que contêm todos os dados em um banco de dados.
+*Nas tabelas, os dados são organizados de maneira lógica em um formato de linha e  coluna semelhante ao de uma planilha.
+*Cada linha representa um registro exclusivo e cada coluna representa um campo no registro.
+
+*Tabela Interna
+*Este é o único tipo de tabela que não é compartilhado entre processos e também não é persistente, ou seja, os dados são 
+*armazenados na memória e uma vez finalizado o programa os dados da tabela são perdidos.
+
+*Tabela Transparente
+*Seu funcionamento é idêntico a qualquer outra tabela de uma banco de dados relacional. Para cada Transparent Table definida na SE11 (Data Dictionary) 
+*uma tabela é criada no banco de dados com exatamente o mesmo nome, os mesmos campos e os mesmos índices.
+
+
+

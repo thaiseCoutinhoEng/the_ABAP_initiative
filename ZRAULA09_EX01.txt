@@ -1,0 +1,64 @@
+*&---------------------------------------------------------------------*
+*& Report ZRAULA09_EX01
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZRAULA09_EX01.
+
+*DML - Data Manipulation Language - Linguagem de Manipulacao de Dados.
+*São os comandos que interagem com os dados dentro das tabelas.
+*São comandos DML: INSERT, DELETE e UPDATE.
+*
+*DDL - Data Definition Language - Linguagem de Definicao de Dados.
+*São os comandos que interagem com os objetos do banco.
+*São comandos DDL: CREATE, ALTER e DROP.
+*
+*DQL - Data Query Language - Linguagem de Consulta de dados.
+*São os comandos de consulta.
+*São comandos DQL : SELECT (é o comando de consulta)
+*Em alguns livros o SELECT fica na DML e em outros tem esse grupo próprio.
+
+TABLES: ZAULA08.
+
+SELECTION-SCREEN BEGIN OF BLOCK bloco01 WITH FRAME.
+  PARAMETERS: p_matri LIKE ZAULA08-matricula OBLIGATORY,
+              p_nome  TYPE znome OBLIGATORY,
+			  p_data  LIKE ZAULA08-datanascimento OBLIGATORY,
+			  p_rg    TYPE ZRG OBLIGATORY,
+			  P_cpf   LIKE ZAULA08-cpf OBLIGATORY,
+			  p_sexo  TYPE zsexo OBLIGATORY.		  
+SELECTION-SCREEN END OF BLOCK bloco01.
+
+*Criando tabela Interna
+DATA: BEGIN OF ti_ZAULA08 OCCURS 0,
+		matricula LIKE ZAULA08-matricula,
+        nome      LIKE ZAULA08-nome,
+		data 	  LIKE ZAULA08-datanascimento,
+		rg        LIKE ZAULA08-RG,
+		cpf       LIKE ZAULA08-cpf,
+		sexo      LIKE ZAULA08-sexo.		  
+     END OF ti_ZAULA08.
+
+ti_ZAULA08-matricula = p_matri.
+ti_ZAULA08-nome      = p_nome.
+ti_ZAULA08-data      = p_data.
+ti_ZAULA08-rg        = p_rg.
+ti_ZAULA08-cpf       = p_cpf.
+ti_ZAULA08-sexo      = p_sexo.
+
+APPEND ti_ZAULA08.
+
+MOVE: ti_ZAULA08-matricula TO ZAULA08-matricula,
+	  ti_ZAULA08-nome      TO ZAULA08-nome,		
+	  ti_ZAULA08-data      TO ZAULA08-datanascimento,
+	  ti_ZAULA08-rg        TO ZAULA08-RG,
+	  ti_ZAULA08-cpf       TO ZAULA08-cpf,
+	  ti_ZAULA08-sexo      TO ZAULA08-sexo.
+
+INSERT ZAULA08.
+
+*Mostra o sucesso ou insucesso
+IF sy-subrc IS INITIAL
+	COMMIT WORK.
+	WRITE 'Gravado com sucesso'.
+ENDIF.

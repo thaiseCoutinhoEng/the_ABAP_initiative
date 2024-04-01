@@ -1,0 +1,25 @@
+*&---------------------------------------------------------------------*
+*& Report ZRAULA06_EX01
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZRAULA06_EX01.
+
+*Data -> Comando ABAP para criar uma variável.
+*Constants -> Um espaco na memória que náo pode ser alterado.
+*Parameter -> Permite que o usuário coloque apenas uma informação para ser processada.
+*Select-options -> É inserido um intervalo de valores (range).
+
+*Declaracao de parametros
+
+PARAMETERS: p_nome type string,
+            P_end type char15,
+            p_data type D,
+            p_hora type T.
+
+*Escrevendo na tela
+
+WRITE: / 'Nome: ', p_nome,
+       / 'Endereço', p_end,
+       / 'Data: ', p_data,
+       / 'Hora: ', p_hora environment time format.
